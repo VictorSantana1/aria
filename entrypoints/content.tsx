@@ -2,8 +2,6 @@ import ReactDOM from "react-dom/client";
 import App from "./components/App";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-import { createContext } from "react";
-import { Extension } from "@mui/icons-material";
 
 export default defineContentScript({
   matches: ["<all_urls>"],
