@@ -14,20 +14,20 @@ import BrightnessMediumOutlinedIcon from "@mui/icons-material/BrightnessMediumOu
 import "../App.css";
 import ButtonsSection from "../ButtonsSection/ButtonsSection";
 
-export default function SettingUI() {
+type props = {
+  changeSettingsMode: (val: string) => void
+  settingViewMode: string;
+}
+
+export default function SettingsMenu({ changeSettingsMode, settingViewMode }: props) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const handler = (message) => {
-      if (message.action === "setting-ui") {
-        setVisible((v) => !v);
-      }
-    };
+    if(settingViewMode === "menu") 
+      return setVisible(true);
 
-    browser.runtime.onMessage.addListener(handler);
-
-    // cleanup importante para não acumular listeners
-    return () => browser.runtime.onMessage.removeListener(handler);
+    return setVisible(false);
+    
   }, []);
 
   return (
@@ -93,7 +93,7 @@ export default function SettingUI() {
               aria-label="Switch color theme"
               sx={{ alignItems: "center" }}
               onClick={() => {
-                browser.runtime.sendMessage({ action: "toggle-theme" });
+                changeSettingsMode('section')
               }}
             >
               <BrightnessMediumOutlinedIcon />

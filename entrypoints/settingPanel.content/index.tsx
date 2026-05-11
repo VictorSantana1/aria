@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import SettingUI from "../components/configOverview/SettingsUI";
+import SettingSession from "../components/configUi/SettingsUI";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import ThemedRoot from "../utils/theme";
 
@@ -26,6 +27,7 @@ export default defineContentScript({
       <CacheProvider value={cache}>
         <ThemedRoot>
           <SettingUI />
+          <SettingSession />
         </ThemedRoot>
       </CacheProvider>,
     );
